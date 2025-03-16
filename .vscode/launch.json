@@ -5,10 +5,10 @@
             "name": "FastAPI Debug",
             "type": "debugpy",
             "request": "launch",
-            "module": "uvicorn",
-            "args": ["app.main:app", "--reload", "--port", "8001"],
+            "cwd": "${workspaceFolder}/SemesterProjekt",
+            "program": "main.py",
             "env": {
-                "PYTHONPATH": "${workspaceFolder}"
+                "PYTHONPATH": "${workspaceFolder}/SemesterProjekt"
             }
         }
     ]
