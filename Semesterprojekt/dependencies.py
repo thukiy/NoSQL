@@ -1,6 +1,7 @@
-from pymongo import MongoClient
+from pymongo import AsyncMongoClient
 
 uri = "mongodb://localhost:27017/"
-def get_db():
-    client = MongoClient(uri)
-    return client["f1_analysis"]
+async def get_db():
+    client = AsyncMongoClient(uri)
+    await client.aconnect()
+    return client.get_database("f1_analysis")

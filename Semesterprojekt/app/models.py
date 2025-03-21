@@ -1,34 +1,36 @@
 from typing import Annotated, Optional
 from bson import ObjectId
-from pydantic import BaseModel, ConfigDict, Field, AfterValidator
+from pydantic import BaseModel, ConfigDict, Field, BeforeValidator
 import uuid 
 from datetime import datetime
 
 
 
-def check_object_id(value: str) -> str:
-    if not ObjectId.is_valid(value):
-        raise ValueError('Invalid ObjectId')
-    return value
+def objectid_to_str(value) -> str:
+    if isinstance(value, ObjectId):
+        return str(value)
+    if isinstance(value, str) and ObjectId.is_valid(value):
+        return value
+    raise ValueError("Invalid ObjectId")
 
-PyObjectId = Annotated[str, AfterValidator(check_object_id)]
+PyObjectId = Annotated[str, BeforeValidator(objectid_to_str)]
 
 class BaseEntity(BaseModel):
     id: Optional[PyObjectId] = Field(alias="_id", default=None)
 
 class LapTime(BaseModel):
-    driver_id: str
-    lap_number: int
+    driver_id: PyObjectId
+    lap_count: int
     time: float
 
 class Race(BaseEntity):
     name: str
     season: int
     race_number: int
-    circuit_id: str
+    circuit_id: PyObjectId
     date: datetime
     laps: int 
-    lap_times:list[LapTime]
+    lap_times: list[LapTime] = Field(default=[])
 
 class Circuit(BaseEntity):
     name: str
@@ -45,7 +47,7 @@ class Team(BaseEntity):
 
 class Driver(BaseEntity):
     name: str
-    team_id: str
+    team_id: PyObjectId
     nationality: str
     birth_date: datetime
     car_number: int
