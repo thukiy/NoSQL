@@ -9,7 +9,7 @@ router = APIRouter(dependencies=[Depends(get_db)])
 
 @router.get(("/teams/"),response_model = list[Team])
 async def get_teams(db: Database = Depends(get_db)):
-    teams = await db.teams.find({}).to_list()
+    teams = await db.teams.find({}).to_list(length=None)
     api_response = [Team(**team) for team in teams]
     return api_response
 
@@ -24,11 +24,12 @@ async def create_team(team: Team=Body(...), db: Database = Depends(get_db)):
 async def update_team(team_id: PyObjectId, team: Team=Body(...), db: Database = Depends(get_db) ):
     data = team.model_dump(by_alias=True, exclude = ["id"])
     update_team = await db["teams"].find_one_and_update(filter={"_id": ObjectId(team_id)}, update={'$set': data}, return_document=ReturnDocument.AFTER)
-    return update_team
+    return Team(**update_team)
 
 
 @router.delete("/teams/{team_id}")
 async def delete_team(team_id: PyObjectId, db: Database = Depends(get_db)):
     deleted_team = await db.teams.delete_one({"_id": ObjectId(team_id)})
+    return {"deleted_count": deleted_team.deleted_count}
 
 

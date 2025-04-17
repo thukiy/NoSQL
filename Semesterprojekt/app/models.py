@@ -21,7 +21,7 @@ class BaseEntity(BaseModel):
 class LapTime(BaseModel):
     driver_id: PyObjectId
     lap_count: int
-    time: float
+    time: str
 
 class Race(BaseEntity):
     name: str
