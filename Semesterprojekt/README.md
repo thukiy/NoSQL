@@ -5,7 +5,7 @@ Developed as part of the coursework for **NoSQL Databases (cds-115), FS25**, thi
 
 ---
 
-## 📘 Project Description
+##  Project Description
 
 The F1 Analysis API is an asynchronous web API that allows clients to perform **CRUD operations** on Formula 1 entities such as teams, drivers, races, and circuits.
 
@@ -28,6 +28,26 @@ Although designed as a backend-only service, this API could easily be integrated
 
 ## Getting Started
 
+## Docker Instructions
+
+To build the Docker image and run the application together with MongoDB:
+
+###  Build the Docker image
+
+```bash
+docker build -t f1_analysis.
+```
+
+### ▶️ Run the app with MongoDB
+
+```bash
+docker-compose up -d
+```
+
+This will:
+- Start the FastAPI backend on `http://localhost:8000`
+- Launch MongoDB on port `27017`
+
 ### Requirements
 
 - Docker & Docker Compose installed and running
@@ -43,12 +63,12 @@ docker-compose up --build
 
 Once running, access the API via:
 
-📄 Swagger UI: [http://localhost:8000/docs](http://localhost:8000/docs)  
-⚙️ OpenAPI JSON: [http://localhost:8000/openapi.json](http://localhost:8000/openapi.json)
+Swagger UI: [http://localhost:8000/docs](http://localhost:8000/docs)  
+OpenAPI JSON: [http://localhost:8000/openapi.json](http://localhost:8000/openapi.json)
 
 ---
 
-## 📦 Entities Overview
+##  Entities Overview
 
 | Entity     | Description |
 |------------|-------------|
