@@ -53,7 +53,7 @@ This will:
 - Docker & Docker Compose installed and running
 - (Optional) Python 3.11+ for local development/testing
 
-### ▶️ Start the Application
+###  Start the Application
 
 In the root directory of the project (e.g., `Semesterprojekt/`), run:
 
