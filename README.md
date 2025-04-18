@@ -44,27 +44,18 @@ docker build -t f1_analysis.
 docker-compose up -d
 ```
 
-This will:
-- Start the FastAPI backend on `http://localhost:8000`
-- Launch MongoDB on port `27017`
+Once running, access the API via:
+
+Swagger UI: [http://localhost:8000/docs](http://localhost:8000/docs)  
+OpenAPI JSON: [http://localhost:8000/openapi.json](http://localhost:8000/openapi.json)
+
 
 ### Requirements
 
 - Docker & Docker Compose installed and running
 - (Optional) Python 3.11+ for local development/testing
 
-###  Start the Application
 
-In the root directory of the project (e.g., `Semesterprojekt/`), run:
-
-```bash
-docker-compose up --build
-```
-
-Once running, access the API via:
-
-Swagger UI: [http://localhost:8000/docs](http://localhost:8000/docs)  
-OpenAPI JSON: [http://localhost:8000/openapi.json](http://localhost:8000/openapi.json)
 
 ---
 
